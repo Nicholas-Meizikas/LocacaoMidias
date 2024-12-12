@@ -82,7 +82,7 @@ public class AtorServlet extends HttpServlet {
             } else {
                 Long id = Utils.getLong(request, "id") ;
                 Ator a = dao.obterPorId(id) ;
-                request.setAttribute("Ator", a);
+                request.setAttribute("ator", a);
                 
                 if (acao.equals("prepararAlteracao")) {
                     disp = request.getRequestDispatcher("/formularios/ator/alterar.jsp") ;
