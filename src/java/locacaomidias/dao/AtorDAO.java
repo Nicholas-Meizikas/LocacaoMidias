@@ -118,6 +118,7 @@ public class AtorDAO extends DAO<Ator> {
         PreparedStatement stmt = getConnection().prepareStatement(
                 """
                 SELECT
+                    id,
                     nome,
                     sobrenome,
                     data_estreia

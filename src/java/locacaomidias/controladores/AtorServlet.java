@@ -80,21 +80,22 @@ public class AtorServlet extends HttpServlet {
                 
                 
             } else {
-                Long id = Utils.getLong(request, "id") ;
+                Long id = Long.valueOf(request.getParameter("id"));
                 Ator a = dao.obterPorId(id) ;
                 request.setAttribute("ator", a);
                 
                 if (acao.equals("prepararAlteracao")) {
+                    
                     disp = request.getRequestDispatcher("/formularios/ator/alterar.jsp") ;
                 } else if (acao.equals("prepararExclusao")) {
+                    
                     disp = request.getRequestDispatcher("/formularios/ator/excluir.jsp") ;
                 }
                 
             }
             
-            
-            
         } catch (SQLException ex) {
+            ex.printStackTrace();
             disp = Utils.prepararDespachoErro(request, ex.getMessage()) ;
         }
         
