@@ -50,19 +50,6 @@
 
         <c:forEach items="${servicos.todos}" var="midia">
           <tr>
-              <!-- 
-    private Long id;
-    private String titulo;
-    private String anoLancamento;
-    private String codigoBarras;
-    private Long duracaoMinutos;
-    private Ator principal;
-    private Ator coadjuvante;
-    private Genero genero;
-    private ClassificacaoEtaria classeEtaria;
-    private ClassificacaoInterna classeInterna;
-    private Tipo tipo;
-            -->
             <td>${midia.id}</td>
             <td>${midia.titulo}</td>
             <td>${midia.anoLancamento}</td>
