@@ -11,7 +11,7 @@ public class Locacao {
     @NotNull
     private Long id;
     @NotNull
-    private Long dataInicio;
+    private Date dataInicio;
     @NotNull
     private Date dataFim;
     @NotNull
@@ -27,11 +27,11 @@ public class Locacao {
         this.id = id;
     }
 
-    public Long getDataInicio() {
+    public Date getDataInicio() {
         return dataInicio;
     }
 
-    public void setDataInicio(Long dataInicio) {
+    public void setDataInicio(Date dataInicio) {
         this.dataInicio = dataInicio;
     }
 
