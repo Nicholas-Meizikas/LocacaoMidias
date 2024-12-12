@@ -125,10 +125,10 @@ public class MidiaDAO extends DAO<Midia>{
         while (rs.next()) {
             Midia m = new Midia() ;
             
+            m.setId(rs.getLong("id"));
             m.setAnoLancamento(rs.getString("ano_lancamento"));
             m.setCodigoBarras(rs.getString("codigo_barras"));
             m.setDuracaoMinutos(rs.getLong("duracao_em_minutos"));
-            m.setId(rs.getLong("id"));
             m.setTitulo(rs.getString("titulo"));
             
             m.setClasseEtaria(classE.obterPorId(rs.getLong("classificacao_etaria_id")));

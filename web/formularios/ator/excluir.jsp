@@ -14,7 +14,7 @@
         <title>Excluir Ator</title>
     </head>
     <body>
-        <h1>Excluir Cidade</h1>
+        <h1>Excluir Ator/Atriz</h1>
 
         <form method="post" action="${cp}/processaAtor">
 
@@ -32,7 +32,7 @@
             </tr>
             <tr>
               <td>
-                <a href="${cp}/formularios/cidades/listagem.jsp">Voltar</a>
+                <a href="${cp}/formularios/ator/listagem.jsp">Voltar</a>
               </td>
               <td class="alinharDireita">
                 <input type="submit" value="Excluir"/>

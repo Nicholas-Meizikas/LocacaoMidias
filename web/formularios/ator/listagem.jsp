@@ -16,11 +16,11 @@
 
   <body>
 
-    <h1>Ators Cadastrados</h1>
+    <h1>Atores Cadastrados</h1>
 
     <p>
       <a href="${cp}/formularios/ator/novo.jsp">
-        Nova Ator
+        Novo Ator
       </a>
     </p>
 
@@ -65,7 +65,7 @@
 
     <p>
       <a href="${cp}/formularios/ator/novo.jsp">
-        Nova Ator
+        Nova Atoriz
       </a>
     </p>
 

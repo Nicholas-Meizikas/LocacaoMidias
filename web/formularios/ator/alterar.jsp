@@ -3,8 +3,9 @@
     Created on : 12 de dez. de 2024, 10:11:30
     Author     : nicho
 --%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="cp" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
 <html>
     <head>

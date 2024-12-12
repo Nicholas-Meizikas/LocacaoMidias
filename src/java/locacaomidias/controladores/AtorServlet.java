@@ -68,7 +68,7 @@ public class AtorServlet extends HttpServlet {
                 Utils.validar( a );
                 dao.atualizar( a );
                 disp = request.getRequestDispatcher(
-                        "/formularios/classificacoesInternas/listagem.jsp" );
+                        "/formularios/ator/listagem.jsp" );
                 
             } else if (acao.equals("excluir")) {
                 
@@ -95,7 +95,6 @@ public class AtorServlet extends HttpServlet {
             }
             
         } catch (SQLException ex) {
-            ex.printStackTrace();
             disp = Utils.prepararDespachoErro(request, ex.getMessage()) ;
         }
         
