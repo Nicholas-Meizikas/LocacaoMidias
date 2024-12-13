@@ -85,6 +85,7 @@ public class LocacaoServlet extends HttpServlet {
                 Locacao l = itemL.getLocacao() ;
                 l.setCancelada(Boolean.TRUE);
                 dao.atualizar(l);
+                itemLDAO.excluir(itemL);
                 
                 disp = request.getRequestDispatcher("/formularios/locacoes/listagem.jsp") ;
             } else {

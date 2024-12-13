@@ -44,7 +44,18 @@ public class ItemLocacaoDAO extends DAO<ItemLocacao>{
 
     @Override
     public void excluir(ItemLocacao obj) throws SQLException {
-        //Não faz sentido
+        PreparedStatement sql = getConnection().prepareStatement("""
+                                                                 DELETE 
+                                                                 FROM item_locacao
+                                                                 WHERE 
+                                                                 locacao_id = ? AND
+                                                                 exemplar_codigo_interno = ?
+                                                                 """) ;
+        sql.setLong(1, obj.getLocacao().getId());
+        sql.setLong(2, obj.getExemplar().getId());
+        
+        sql.executeUpdate() ;
+        sql.close();
     }
 
     @Override
