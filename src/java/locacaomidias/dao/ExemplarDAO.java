@@ -46,7 +46,7 @@ public class ExemplarDAO extends DAO<Exemplar>{
                     disponivel = ?,
                     midia_id = ?
                 WHERE
-                    id = ?;
+                    codigo_interno = ?;
                 """ );
 
         stmt.setBoolean(1, obj.getDisponivel());
@@ -63,7 +63,7 @@ public class ExemplarDAO extends DAO<Exemplar>{
                 """
                 DELETE FROM exemplar
                 WHERE
-                    id = ?;
+                    codigo_interno = ?;
                 """ );
 
         stmt.setLong( 1, obj.getId() );
@@ -121,9 +121,12 @@ public class ExemplarDAO extends DAO<Exemplar>{
                     midia_id
                 FROM
                     exemplar
+                WHERE
+                    codigo_interno = ?
                 ORDER BY midia_id, disponivel;
                 """ );
 
+        stmt.setLong(1, id);
         ResultSet rs = stmt.executeQuery();
         
         MidiaDAO midia = new MidiaDAO() ;

@@ -1,7 +1,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="cp" value="${pageContext.request.contextPath}"/>
-<c:set var="prefixo" value="processaMidia?acao=preparar"/>
+<c:set var="prefixo" value="pExemplar?acao=preparar"/>
 <!DOCTYPE html>
 
 <html>
@@ -47,12 +47,12 @@
             <td>${exemplar.disponivel}</td>
             <td>${exemplar.midia.titulo}</td>
             <td>
-              <a href="${cp}/${prefixo}Alteracao&id=${midia.id}">
-                Alterar
+              <a href="${cp}/${prefixo}Alteracao&id=${exemplar.id}">
+                Devolvido
               </a>
             </td>
             <td>
-              <a href="${cp}/${prefixo}Exclusao&id=${midia.id}">
+              <a href="${cp}/${prefixo}Exclusao&id=${exemplar.id}">
                 Excluir
               </a>
             </td>

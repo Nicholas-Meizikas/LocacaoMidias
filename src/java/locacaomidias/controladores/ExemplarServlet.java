@@ -50,7 +50,7 @@ public class ExemplarServlet extends HttpServlet {
                     Exemplar e = new Exemplar() ;
                     e.setMidia(midias.obterPorId(midia));
                     
-                    if (quantidade > 1) {
+                    if (midias.obterPorId(midia)!= null) {
                         e.setDisponivel(Boolean.TRUE);
                     } else {
                         e.setDisponivel(Boolean.FALSE);
@@ -59,7 +59,7 @@ public class ExemplarServlet extends HttpServlet {
                     dao.salvar(e);
                 }
                 
-                disp = request.getRequestDispatcher("/formularios/exemplar/listagem.jsp") ;
+                disp = request.getRequestDispatcher("/formularios/exemplares/listagem.jsp") ;
                 
             } else if (acao.equals("excluir")) {
                 
@@ -68,40 +68,26 @@ public class ExemplarServlet extends HttpServlet {
                 
                 dao.excluir(e);
                 
-                List<Exemplar> lista = dao.listarTodos() ;
-                
-                List<Exemplar> quantidade = new ArrayList<>() ;
-                for (Exemplar ex : lista) {
-                    if (ex.getMidia().getId() == e.getMidia().getId() && ex.getDisponivel())  {
-                        quantidade.add(ex) ;
-                    }
-                }
-                
-                if (quantidade.size() < 2) {
-                    for (Exemplar exe : quantidade) {
-                        exe.setDisponivel(Boolean.FALSE);
-                        dao.atualizar(exe);
-                    }
-                }
-                
-                disp = request.getRequestDispatcher("/formularios/exemplar/listagem.jsp") ;
+                disp = request.getRequestDispatcher("/formularios/exemplares/listagem.jsp") ;
                 
             } else {
                 
                 Long id = Long.valueOf(request.getParameter("id")) ;
                 Exemplar e = dao.obterPorId(id) ;
-                request.setAttribute("exemplar", e);
                 
                 if (acao.equals("prepararAlteracao")){
                     e.setDisponivel(Boolean.TRUE);
                     dao.atualizar(e);
                     disp = request.getRequestDispatcher("/formularios/exemplares/listagem.jsp") ;
                 } else if (acao.equals("prepararExclusao")){
+                    
+                    request.setAttribute("exemplar", e);
                     disp = request.getRequestDispatcher("/formularios/exemplares/excluir.jsp") ;
                 }
             }
             
         } catch (SQLException ex) {
+            ex.printStackTrace();
             Utils.prepararDespachoErro(request, ex.getMessage()) ;
         }
         
