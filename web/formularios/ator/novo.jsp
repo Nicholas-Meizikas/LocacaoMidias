@@ -11,6 +11,8 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet"
+          href="${cp}/css/estilos.css"/>
         <title>Novo Ator</title>
     </head>
     <body>
@@ -33,7 +35,7 @@
               </td>
             </tr>
             <tr>
-              <td class="alinharDireita">Nome:</td>
+              <td class="alinharDireita">Sobrenome:</td>
               <td>
                 <input name="sobrenome"
                        type="text"
