@@ -16,7 +16,7 @@
     <body>
         <h1>Excluir Cidade</h1>
         
-        <form method="post" action="${cp}/processaCidades">
+        <form method="post" action="${cp}/processaMidia">
             
             <input name="acao" type="hidden" value="excluir"/>
             <input name="id" type="hidden" value="${requestScope.midia.id}"/>

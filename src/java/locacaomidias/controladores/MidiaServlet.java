@@ -156,6 +156,7 @@ public class MidiaServlet extends HttpServlet {
             }
             
         } catch (SQLException ex) {
+            ex.printStackTrace();
             disp = Utils.prepararDespachoErro(request, ex.getMessage()) ;
         }
         
