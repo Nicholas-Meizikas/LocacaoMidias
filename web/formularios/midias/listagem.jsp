@@ -6,7 +6,7 @@
 
 <html>
   <head>
-    <title></title>
+    <title>Listagem Midias</title>
     <meta charset="UTF-8">
     <meta name="viewport"
           content="width=device-width, initial-scale=1.0">
@@ -31,6 +31,7 @@
           <th>titulo</th>
           <th>ano de Lançamentos</th>
           <th>Codigo de Barras</th>
+          <th>Duração em minutos</th>
           <th>Ator Principal</th>
           <th>Ator Coadjuvante</th>
           <th>Genero</th>
@@ -54,6 +55,7 @@
             <td>${midia.titulo}</td>
             <td>${midia.anoLancamento}</td>
             <td>${midia.codigoBarras}</td>
+            <td>${midia.duracaoMinutos}</td>
             <td>${midia.principal.nome} ${midia.principal.sobrenome}</td>
             <td>${midia.coadjuvante.nome} ${midia.coadjuvante.sobrenome}</td>
             <td>${midia.genero.descricao}</td>
@@ -61,12 +63,12 @@
             <td>${midia.classeInterna.descricao}</td>
             <td>${midia.tipo.descricao}</td>
             <td>
-              <a href="${cp}/${prefixo}Alteracao&id=${ator.id}">
+              <a href="${cp}/${prefixo}Alteracao&id=${midia.id}">
                 Alterar
               </a>
             </td>
             <td>
-              <a href="${cp}/${prefixo}Exclusao&id=${ator.id}">
+              <a href="${cp}/${prefixo}Exclusao&id=${midia.id}">
                 Excluir
               </a>
             </td>

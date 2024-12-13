@@ -10,7 +10,6 @@ import java.sql.Date ;
 public class Ator {
     @NotNull
     private Long id;
-    
     @NotNull
     private String nome;
     @NotNull

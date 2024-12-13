@@ -143,7 +143,7 @@ public class MidiaServlet extends HttpServlet {
                 
                 Long id = Utils.getLong( request, "id" );
                 Midia e = dao.obterPorId( id );
-                request.setAttribute( "Midia", e );
+                request.setAttribute( "midia", e );
                 
                 if ( acao.equals( "prepararAlteracao" ) ) {
                     disp = request.getRequestDispatcher( 

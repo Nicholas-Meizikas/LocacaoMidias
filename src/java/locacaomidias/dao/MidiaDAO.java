@@ -162,10 +162,13 @@ public class MidiaDAO extends DAO<Midia>{
                     tipo_id, classificacao_interna_id
                  FROM
                     midia
+                WHERE
+                    id = ?
                  order by titulo, ano_lancamento ;
                 """,
                 new String[]{ "insert_id" } );
 
+        stmt.setLong(1, id);
         ResultSet rs = stmt.executeQuery() ;
         
         AtorDAO ator = new AtorDAO() ;

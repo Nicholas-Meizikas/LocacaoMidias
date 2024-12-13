@@ -5,6 +5,8 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="cp" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
 <html>
     <head>
@@ -12,25 +14,12 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <!-- 
-    private Long id;
-    private String titulo;
-    private String anoLancamento;
-    private String codigoBarras;
-    private Long duracaoMinutos;
-    private Ator principal;
-    private Ator coadjuvante;
-    private Genero genero;
-    private ClassificacaoEtaria classeEtaria;
-    private ClassificacaoInterna classeInterna;
-    private Tipo tipo;
-            -->
-            
-            <h1>Nova Midia</h1>
+        <h1>Alterar Midia</h1>
 
         <form method="post" action="${cp}/processaMidia">
 
           <input name="acao" type="hidden" value="alterar"/>
+          <input name="id" type="hidden" value="${requestScope.midia.id}"/>
 
           <table>
             <tr>
@@ -38,7 +27,8 @@
               <td>
                 <input name="titulo"
                        type="text"
-                       required/>
+                       required
+                       value="${requestScope.midia.titulo}"/>
               </td>
             </tr>
             <tr>
@@ -46,7 +36,8 @@
               <td>
                 <input name="anoLancamento"
                        type="text"
-                       required/>
+                       required
+                       value="${requestScope.midia.anoLancamento}"/>
               </td>
             </tr>
             <tr>
@@ -54,7 +45,8 @@
               <td>
                 <input name="codigoBarras"
                        type="text"
-                       required/>
+                       required
+                       value="${requestScope.midia.codigoBarras}"/>
               </td>
             </tr>
             <tr>
@@ -62,11 +54,12 @@
               <td>
                 <input name="duracao"
                        type="number"
-                       required/>
+                       required
+                       value="${requestScope.midia.duracaoMinutos}"/>
               </td>
             </tr>
             <tr>
-                <td class="alinharDireita">Estado:</td>
+                <td class="alinharDireita">Ator Principal:</td>
                 <td>
 
                     <jsp:useBean 
@@ -93,42 +86,87 @@
 
                     <select name="idAtorPrincipal" required>
                       <c:forEach items="${atorServicos.todos}" var="ator">
-                        <option value="${ator.id}">
-                          ${ator.nome} ${ator.sobrenome}
-                        </option>
+                            <c:choose>
+                                <c:when test="${requestScope.midia.principal.id eq
+                                                      ator.id}">
+                                        
+                                        <option value="${ator.id}" selected>
+                                            ${ator.nome} ${ator.sobrenome}
+                                        </option>
+                                </c:when>
+                                <c:otherwise>
+                                    <option value="${ator.id}">
+                                        ${ator.nome} ${ator.sobrenome}
+                                    </option>
+                                </c:otherwise>
+                            </c:choose>
                       </c:forEach>
                     </select>
                 </td>
             </tr>
             <tr>
+                <td class="alinharDireita">Ator Coadjuvante:</td>
                 <td>
                     <select name="idAtorCoadjuvante" required>
                       <c:forEach items="${atorServicos.todos}" var="ator">
-                        <option value="${ator.id}">
-                          ${ator.nome} ${ator.sobrenome}
-                        </option>
+                            <c:choose>
+                                <c:when test="${requestScope.midia.coadjuvante.id eq
+                                                      ator.id}">
+                                        
+                                        <option value="${ator.id}" selected>
+                                            ${ator.nome} ${ator.sobrenome}
+                                        </option>
+                                </c:when>
+                                <c:otherwise>
+                                    <option value="${ator.id}">
+                                        ${ator.nome} ${ator.sobrenome}
+                                    </option>
+                                </c:otherwise>
+                            </c:choose>
                       </c:forEach>
                     </select>
                 </td>
             </tr>
             <tr>
+                <td class="alinharDireita">Genero:</td>
                 <td>
                     <select name="idGenero" required>
                       <c:forEach items="${generoServicos.todos}" var="genero">
-                        <option value="${genero.id}">
-                          ${genero.descricao}
-                        </option>
+                            <c:choose>
+                                <c:when test="${requestScope.midia.genero.id eq
+                                                      genero.id}">
+                                        <option value="${genero.id}" selected>
+                                            ${genero.descricao}
+                                        </option>
+                                </c:when>
+                                <c:otherwise>
+                                    <option value="${genero.id}" >
+                                            ${genero.descricao}
+                                    </option>
+                                </c:otherwise>
+                            </c:choose>
                       </c:forEach>
                     </select>
                 </td>
             </tr>
             <tr>
+                <td class="alinharDireita">Classificação Etaria:</td>
                 <td>
                     <select name="idClassEtaria" required>
                       <c:forEach items="${classEServicos.todos}" var="classE">
-                        <option value="${classE.id}">
-                          ${classE.descricao}
-                        </option>
+                            <c:choose>
+                                <c:when test="${requestScope.midia.classeEtaria.id eq
+                                                      classE.id}">
+                                        <option value="${classE.id}" selected>
+                                            ${classE.descricao}
+                                        </option>
+                                </c:when>
+                                <c:otherwise>
+                                    <option value="${classE.id}" >
+                                            ${classE.descricao}
+                                    </option>
+                                </c:otherwise>
+                            </c:choose>
                       </c:forEach>
                     </select>
                 </td>
@@ -138,9 +176,19 @@
                 <td>
                     <select name="idClassInterna" required>
                       <c:forEach items="${classIServicos.todos}" var="classI">
-                        <option value="${classI.id}">
-                          ${classI.descricao}
-                        </option>
+                            <c:choose>
+                                <c:when test="${requestScope.midia.classeInterna.id eq
+                                                      classI.id}">
+                                        <option value="${classI.id}" selected>
+                                            ${classI.descricao}
+                                        </option>
+                                </c:when>
+                                <c:otherwise>
+                                    <option value="${classI.id}" >
+                                            ${classI.descricao}
+                                    </option>
+                                </c:otherwise>
+                            </c:choose>
                       </c:forEach>
                     </select>
                 </td>
@@ -150,9 +198,19 @@
                 <td>
                     <select name="idTipo" required>
                       <c:forEach items="${tipoServicos.todos}" var="tipo">
-                        <option value="${tipo.id}">
-                          ${tipo.descricao}
-                        </option>
+                        <c:choose>
+                                <c:when test="${requestScope.midia.tipo.id eq
+                                                      tipo.id}">
+                                        <option value="${tipo.id}" selected>
+                                            ${tipo.descricao}
+                                        </option>
+                                </c:when>
+                                <c:otherwise>
+                                    <option value="${tipo.id}" >
+                                            ${tipo.descricao}
+                                    </option>
+                                </c:otherwise>
+                            </c:choose>
                       </c:forEach>
                     </select>
                 </td>
