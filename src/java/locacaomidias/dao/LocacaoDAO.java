@@ -31,7 +31,7 @@ public class LocacaoDAO extends DAO<Locacao>{
         stmt.setDate(1, obj.getDataInicio());
         stmt.setDate( 2, obj.getDataFim());
         stmt.setBoolean( 3, obj.getCancelada());
-        stmt.setLong( 3, obj.getCliente().getId());
+        stmt.setLong( 4, obj.getCliente().getId());
         
 
         stmt.executeUpdate();
@@ -129,9 +129,11 @@ public class LocacaoDAO extends DAO<Locacao>{
                     cliente_id
                 FROM
                     locacao
+                WHERE
+                    id = ?
                 ORDER BY data_inicio;
                 """ );
-
+        stmt.setLong(1, id);
         ResultSet rs = stmt.executeQuery();
 
         ClienteDAO cliente = new ClienteDAO() ;

@@ -53,8 +53,9 @@ public class LocacaoServlet extends HttpServlet {
                 
                 Date dia = new Date(System.currentTimeMillis());
                 l.setDataInicio(dia);
-                dia.setDate(dia.getDate()+7);
-                l.setDataFim(dia);
+                Date fim = new Date(System.currentTimeMillis()) ;
+                fim.setDate(fim.getDate()+7);
+                l.setDataFim(fim);
                 l.setCancelada(Boolean.FALSE);
                 l.setCliente(cli.obterPorId(cliente));
                 
@@ -75,36 +76,42 @@ public class LocacaoServlet extends HttpServlet {
                 itemLDAO.salvar(itemL);
                 
                 disp = request.getRequestDispatcher("/formularios/locacoes/listagem.jsp") ;
-            } else if (acao.equals("alterar")) {
-                Long id = Long.valueOf(request.getParameter("idItemLocacao")) ;
-                ItemLocacao itemL = itemLDAO.obterPorId(id) ;
-                itemL.getLocacao().setCancelada(Boolean.TRUE);
-                itemL.getExemplar().setDisponivel(Boolean.TRUE);
-                
-                dao.atualizar(itemL.getLocacao());
-                exem.atualizar(itemL.getExemplar());
-                
-                disp = request.getRequestDispatcher("/formularios/locacoes/listagem.jsp") ;
             } else if (acao.equals("excluir")) {
-                Long id = Long.valueOf(request.getParameter("id")) ;
-                Locacao l = dao.obterPorId(id) ;
-                dao.excluir(l);
+                Long idI = Long.valueOf(request.getParameter("idLocacao")) ;
+                
+                Long idE = Long.valueOf(request.getParameter("idExemplar")) ;
+                
+                ItemLocacao itemL = itemLDAO.ObterPorLocacaoIDExemplarId(idI, idE) ;
+                Locacao l = itemL.getLocacao() ;
+                l.setCancelada(Boolean.TRUE);
+                dao.atualizar(l);
                 
                 disp = request.getRequestDispatcher("/formularios/locacoes/listagem.jsp") ;
             } else {
+                Long idI = Long.valueOf(request.getParameter("idLocacao")) ;
                 
-                Long id = Long.valueOf(request.getParameter("id")) ;
-                Locacao l = dao.obterPorId(id) ;
-                request.setAttribute("locacao", l);
+                Long idE = Long.valueOf(request.getParameter("idExemplar")) ;
                 
+                ItemLocacao itemL = itemLDAO.ObterPorLocacaoIDExemplarId(idI, idE) ;
+                
+                
+                request.setAttribute("itemLocacao", itemL);
                 if (acao.equals("prepararAlteracao")) {
-                    disp = request.getRequestDispatcher("/formularios/locacoes/alterar.jsp") ;
+                    
+                    itemL.getLocacao().setCancelada(Boolean.TRUE);
+                    itemL.getExemplar().setDisponivel(Boolean.TRUE);
+
+                    dao.atualizar(itemL.getLocacao());
+                    exem.atualizar(itemL.getExemplar());
+
+                    disp = request.getRequestDispatcher("/formularios/locacoes/listagem.jsp") ;
                 } else if (acao.equals("prepararExclusao")) {
-                    disp = request.getRequestDispatcher("/formularios/locacoes/exclusao.jsp") ;
+                    disp = request.getRequestDispatcher("/formularios/locacoes/excluir.jsp") ;
                 }
             }
             
         } catch (SQLException ex) {
+            ex.printStackTrace();
             Utils.prepararDespachoErro(request, ex.getMessage()) ;
         }
         

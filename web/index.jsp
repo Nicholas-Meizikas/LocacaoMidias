@@ -18,8 +18,8 @@
     <h1>Sistema para Locação de Mídias</h1>
     
     <p>
-      <a href="${cp}/formularios/locacoes/listagem.jsp" class="alerta">
-        Locações (Implementar)
+      <a href="${cp}/formularios/locacoes/listagem.jsp">
+        Locações
       </a>
     </p>
     
@@ -31,8 +31,8 @@
       </a>
     </p>
     <p>
-      <a href="${cp}/formularios/exemplares/listagem.jsp" class="alerta">
-        Exemplares (Implementar)
+      <a href="${cp}/formularios/exemplares/listagem.jsp">
+        Exemplares
       </a>
     </p>
     

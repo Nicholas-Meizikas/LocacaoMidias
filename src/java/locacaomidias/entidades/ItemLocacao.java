@@ -50,7 +50,7 @@ public class ItemLocacao {
 
     @Override
     public String toString() {
-        return "ItemLocacao{" + "id=" + id + ", locacao=" + locacao + ", exemplar=" + exemplar + ", valor=" + valor + '}';
+        return "ItemLocacao{" + "id=" + id + ", locacao=" + locacao.toString() + ", exemplar=" + exemplar + ", valor=" + valor + '}';
     }
     
 }
